@@ -9,16 +9,13 @@ Ensure that bin exists:
 
 `mkdir ~/bin`
 
-Ensure that ~/bin is linked:
+Check that ~/.local/bin is linked:
 
-```
-new_entry="$HOME/bin"  
-case ":$PATH:" in
-  *":$new_entry:"*) :;;  
-  *) PATH="$new_entry:$PATH";;  
-esac
-```
+`echo "$PATH" | tr ":" "\n"`
 
+If it isn't, run this:
+
+`echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc`
 
 Make it executable:
 
