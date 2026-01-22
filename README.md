@@ -1,8 +1,35 @@
 upload.sh is a collection of scripts to upload your files to as many providers as possible, using curl and other usually pre-installed linux utilities.  
 check out [UploadTo](INSERT URL HERE), a sister program that does the same thing but for multiple providers at the same time and that is compilled, therefore working in other shells such as fish.  
-# HOW TO INSTALL
+# HOW TO INSTALL  
+you can download a script for a specific provider with:
 
-# PROVIDERS
+`curl -H 'Accept: application/vnd.github.v3.raw' -O -L https://api.github.com/repos/DaviCompai/upload.sh/contents/providers/<name of the provider (remove <>)>`
+
+Ensure that bin exists:
+
+`mkdir ~/bin`
+
+Ensure that ~/bin is linked:
+
+```
+new_entry="$HOME/bin"  
+case ":$PATH:" in
+  *":$new_entry:"*) :;;  
+  *) PATH="$new_entry:$PATH";;  
+esac
+```
+
+
+Make it executable:
+
+`chmod +x <name_of_provider>`
+
+Move the script to bin:
+
+`mv <name_of_provider> ~/bin`
+
+remember that you can change the name of the script to wathever you want, which will also change the command to use it
+# PROVIDERS  
 
 | provider | Upload | Download | Persistence   | Ads | Max size | Note |
 | --------------- | ------- | -------- | ------------- | ---------- |---------------|--------|
