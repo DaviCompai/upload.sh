@@ -17,12 +17,8 @@ check out [UploadTo](INSERT URL HERE), a sister program that does the same thing
 - [ ] add support for catbox.moe
 - [x] Add support for 0x0.st
 - [ ] Add support for litterbox.catbox.moe
-- [ ] Add a flag to get more info on the upload (when available) besides the link
-- [ ] Add a options flag for toggleable things (eg if link is copyed to the clipboard or not)
-- [ ] add a provider change in the options flag
-- [ ] add a flag for notes
-- [X] add and format a help flag
 
+Add support means having a basic -help flag and being able to upload a file trought the default "command file.example", with optional flags for providers-specific features (such as -i to show how many days a file lasts in 0x0, or a -n flag for adding notes to buzzheavier files)
 # project organization/philosophy:
 Due to the nature of bash scripts and a considerable amount of their value coming from their simplicity, this will be a single file project that is organized in the following way:  
 
