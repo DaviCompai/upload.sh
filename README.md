@@ -1,13 +1,13 @@
 upload.sh is a collection of scripts to upload your files to as many providers as possible, using curl and other usually pre-installed linux utilities.  
 check out [UploadTo](INSERT URL HERE), a sister program that does the same thing but for multiple providers at the same time and that is compilled, therefore working in other shells such as fish.  
 # HOW TO INSTALL  
-you can download a script for a specific provider with:
+you can download a script for a specific provider with this command, where the name of the provider is everything before the first dot:
 
-`curl -H 'Accept: application/vnd.github.v3.raw' -O -L https://api.github.com/repos/DaviCompai/upload.sh/contents/providers/<name of the provider (remove <>)>`
+`curl -H 'Accept: application/vnd.github.v3.raw' -O -L https://api.github.com/repos/DaviCompai/upload.sh/contents/providers/<name of the provider (remove <>)>.sh`
 
 Ensure that bin exists:
 
-`mkdir ~/bin`
+`mkdir ~/.local/bin`
 
 Check that ~/.local/bin is linked:
 
@@ -23,10 +23,19 @@ Make it executable:
 
 Move the script to bin:
 
-`mv <name_of_provider> ~/bin`
+`mv <name_of_provider> ~/.local/bin/`
 
 remember that you can change the name of the script to wathever you want, which will also change the command to use it
+
+to install the 0x0 script (recommended for small files) and name it "upload":
+```
+curl -H 'Accept: application/vnd.github.v3.raw' -O -L https://api.github.com/repos/DaviCompai/upload.sh/contents/providers/0x0.sh
+mkdir ~/bin
+chmod +x 0x0.sh
+mv 0x0.sh ~/.local/bin/upload
+```
 # PROVIDERS  
+the provider name for the installation setup is everything before the first dot.
 
 | provider | Upload | Download | Persistence   | Ads | Max size | Note |
 | --------------- | ------- | -------- | ------------- | ---------- |---------------|--------|
@@ -54,7 +63,6 @@ All CLI programs used should be considered default for a linux installation; eve
 
 ## flags:
 -h / -help : usual help text.  
--p / -provider: sellect which provider to use. format: -provider:name_of_provider  
 -i / -info: show extra information on the procedure when available  
 -n / -note: change note to send with the file, when available  
 -s / -simple: only receives a file and gives out a link, with no other interaction. useful for scripting.  
