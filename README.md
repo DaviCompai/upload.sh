@@ -50,10 +50,12 @@ the provider name for the installation setup is everything before the first dot.
 - [ ] add support for catbox.moe
 - [x] Add support for 0x0.st
 - [ ] Add support for litterbox.catbox.moe
+- [ ] make a "mega script" that unifies all scripts into one, allowing for easy provider switching without different commands/files.
+
 
 Add support means having a basic -help flag and being able to upload a file trought the default "command file.example", with optional flags for providers-specific features (such as -i to show how many days a file lasts in 0x0, or a -n flag for adding notes to buzzheavier files)
 # project organization/philosophy:
-Due to the nature of bash scripts and a considerable amount of their value coming from their simplicity, this will be a single file project that is organized in the following way:  
+Due to the nature of bash scripts and a considerable amount of their value coming from their simplicity, the provider directory will be organized in the following way:  
 
 Each provider will have their own bash script that works by itself.
 
