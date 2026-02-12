@@ -3,6 +3,7 @@
 set -e
 info=0
 help=0
+simple=0
 filepath=$1
 if [[ $# -lt 1 ]] || [[ "$1" = -i ]] || [[ "$1" = -info ]] || [[ "$1" = -h ]] || [[ "$1" = -help ]]; then
   echo "Error: no file specified. use ${0##*/} -h for help." >&2
@@ -21,7 +22,11 @@ for argument in "$@"; do
   if [[ $argument = -h || $argument = -help ]]; then
     help=1
   fi
+  if [[ $argument = -s || $argument = -simple ]]; then
+    simple=1
+  fi
 done
+
 if [[ $help -eq 1 ]]; then
   echo -e "Uploads your files to 0x0.st. expects a file as it's first argument\n-i or -info: tells you an estimative on how long your files are going to be stored for\n-h or -help: shows this text."
   exit
@@ -39,5 +44,9 @@ if [[ $info -eq 1 ]]; then
 fi
 #test
 link=$(curl -A "upload.shBydavicompai@gmail.com/$USER" -F"file=@$filepath" https://0x0.st -w "\\n")
-echo "$link" | tee>(xclip -selection clipboard)
-echo 'link to file copied!'
+if [[ simple -eq 0 ]]; then
+  echo "$link" | tee>(xclip -selection clipboard)
+  echo 'link to file copied!'
+else
+  echo "$link"
+fi
