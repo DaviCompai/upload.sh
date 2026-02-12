@@ -45,7 +45,7 @@ fi
 #test
 link=$(curl -A "upload.shBydavicompai@gmail.com/$USER" -F"file=@$filepath" https://0x0.st -w "\\n")
 if [[ simple -eq 0 ]]; then
-  echo "$link" | tee>(xclip -selection clipboard)
+  echo "$link" | tee >(xclip -selection clipboard)
   echo 'link to file copied!'
 else
   echo "$link"
