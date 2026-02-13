@@ -45,7 +45,7 @@ the provider name for the installation setup is everything before the first dot.
 | catbox.moe | Fast | Fast | Forever | No | 200 MB | please don't use this service unless you really need an upload to be permanent |
 | litterbox.catbox.moe | Fast | Fast | up to 3 days | No | 1 GB | accepts 1h/12h/24h/72h for persistence |
 # TODO:
-- [ ] add support for buzzheavier.com
+- [x] add support for buzzheavier.com
 - [ ] add support for termbox
 - [ ] add support for catbox.moe
 - [x] Add support for 0x0.st
