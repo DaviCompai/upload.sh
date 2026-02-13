@@ -1,11 +1,19 @@
 #!/usr/bin/bash
 
+help=0
+simple=0
+note=0
+
 for argument in "$@"; do
   argument=${argument,,}
   #accepts uppercase arguments too.
   case $argument in
   -h | -help) help=1 ;;
   -s | -simple) simple=1 ;;
+  -note:* | -n:*)
+    note=1
+    note_content=${argument##*:}
+    ;;
   esac
 done
 
@@ -30,10 +38,14 @@ fi
 
 file_name=${file_path##*/}
 getUploadId() {
-  if [[ simple -eq 0 ]]; then
+  if [[ simple -eq 0 && note -eq 0 ]]; then
     upload_output=$(curl -#o - -T "$file_path" "https://w.buzzheavier.com/$file_name" | cat)
-  else
+  elif [[ simple -eq 1 && note -eq 0 ]]; then
     upload_output=$(curl -#o - -T "$file_path" "https://w.buzzheavier.com/$file_name")
+  elif [[ simple -eq 0 && note -eq 1 ]]; then
+    upload_output=$(curl -#o - -T "$file_path" "https://w.buzzheavier.com/${file_name}?note=$(echo -n "${note_content}" | base64)" | cat)
+  elif [[ simple -eq 1 && note -eq 1 ]]; then
+    upload_output=$(curl -#o - -T "$file_path" "https://w.buzzheavier.com/${file_name}?note=$(echo -n "${note_content}" | base64)")
   fi
   upload_id=${upload_output##*\"id\":\"}
   upload_id=${upload_id%%\"*}
