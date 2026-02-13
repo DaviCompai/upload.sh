@@ -7,15 +7,6 @@ simple=0
 filepath=$1
 
 for argument in "$@"; do
-  #  if [[ $argument = -i || $argument = -info ]]; then
-  #    info=1
-  #  fi
-  #  if [[ $argument = -h || $argument = -help ]]; then
-  #    help=1
-  #  fi
-  #  if [[ $argument = -s || $argument = -simple ]]; then
-  #    simple=1
-  #  fi
   argument=${argument,,}
   #accepts uppercase arguments too.
   case $argument in
@@ -26,7 +17,7 @@ for argument in "$@"; do
 done
 
 if [[ $help -eq 1 ]]; then
-  echo -e "Uploads your files to 0x0.st. Expects a file as it's first parameter.
+  echo -e "Uploads a file to 0x0.st. Expects a file path as it's first parameter.
   -i or -info: Tells you an estimative on how long your files are going to be stored for.
   -s or -simple: Only outputs the file link. Usefull for scripts.
   -h or -help: Shows this text."
