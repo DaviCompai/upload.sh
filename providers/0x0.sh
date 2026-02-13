@@ -5,6 +5,34 @@ info=0
 help=0
 simple=0
 filepath=$1
+
+for argument in "$@"; do
+  #  if [[ $argument = -i || $argument = -info ]]; then
+  #    info=1
+  #  fi
+  #  if [[ $argument = -h || $argument = -help ]]; then
+  #    help=1
+  #  fi
+  #  if [[ $argument = -s || $argument = -simple ]]; then
+  #    simple=1
+  #  fi
+  argument=${argument,,}
+  #accepts uppercase arguments too.
+  case $argument in
+  -i | -info) info=1 ;;
+  -h | -help) help=1 ;;
+  -s | -simple) simple=1 ;;
+  esac
+done
+
+if [[ $help -eq 1 ]]; then
+  echo -e "Uploads your files to 0x0.st. Expects a file as it's first parameter.
+  -i or -info: Tells you an estimative on how long your files are going to be stored for.
+  -s or -simple: Only outputs the file link. Usefull for scripts.
+  -h or -help: Shows this text."
+  exit
+fi
+
 if [[ $# -lt 1 ]] || [[ "$1" = -i ]] || [[ "$1" = -info ]] || [[ "$1" = -h ]] || [[ "$1" = -help ]]; then
   echo "Error: no file specified. use ${0##*/} -h for help." >&2
   exit 1
@@ -15,22 +43,6 @@ if [[ ! -f "$filepath" ]]; then
   exit 1
 fi
 
-for argument in "$@"; do
-  if [[ $argument = -i || $argument = -info ]]; then
-    info=1
-  fi
-  if [[ $argument = -h || $argument = -help ]]; then
-    help=1
-  fi
-  if [[ $argument = -s || $argument = -simple ]]; then
-    simple=1
-  fi
-done
-
-if [[ $help -eq 1 ]]; then
-  echo -e "Uploads your files to 0x0.st. expects a file as it's first argument\n-i or -info: tells you an estimative on how long your files are going to be stored for\n-h or -help: shows this text."
-  exit
-fi
 # "-A" stands for user agent (this site requires it)
 # duration of file in the server (-i/-info argument):
 if [[ $info -eq 1 ]]; then
